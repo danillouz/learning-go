@@ -23,4 +23,4 @@ when I forget things again 😁.
 
 ## Posts
 
-* [1. Getting Started](posts/1-getting-started)
+* [1. Getting Started](/posts/1-getting-started)
