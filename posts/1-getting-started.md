@@ -65,7 +65,7 @@ First create a package called `hello-world`:
 > mkdir -p $GOPATH/src/github.com/danillouz/hello-world
 ```
 
-Create a file called `hello-world.go` inside the `hello-world` package with the following [contents](code/hello-world/hello-world.go):
+Create a file called `hello-world.go` inside the `hello-world` package with the following [contents](../code/hello-world/hello-world.go):
 
 ```go
 package main
