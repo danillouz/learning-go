@@ -3,15 +3,25 @@ package main
 import "fmt"
 
 // Hello creates a hello message
-func Hello(name string) string {
-	if name == "" {
-		name = "World"
+func Hello(lang, name string) string {
+	var prefix string
+
+	switch lang {
+	case "English":
+		prefix = "Hello "
+
+	case "Dutch":
+		prefix = "Hallo "
 	}
 
-	return "Hello " + name
+	if name == "" {
+		name = "Go"
+	}
+
+	return prefix + name
 }
 
 func main() {
-	msg := Hello("World")
+	msg := Hello("English", "World")
 	fmt.Println(msg)
 }

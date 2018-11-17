@@ -11,16 +11,30 @@ func TestHello(t *testing.T) {
 		}
 	}
 
-	t.Run("Appends name", func(t *testing.T) {
-		got := Hello("Daniel")
+	t.Run("Greets in English with name", func(t *testing.T) {
+		got := Hello("English", "Daniel")
 		want := "Hello Daniel"
 
 		assert(t, got, want)
 	})
 
-	t.Run("Default name to 'World'", func(t *testing.T) {
-		got := Hello("")
-		want := "Hello World"
+	t.Run("Default name to 'Go' in English", func(t *testing.T) {
+		got := Hello("English", "")
+		want := "Hello Go"
+
+		assert(t, got, want)
+	})
+
+	t.Run("Greets in Dutch with name", func(t *testing.T) {
+		got := Hello("Dutch", "Daniel")
+		want := "Hallo Daniel"
+
+		assert(t, got, want)
+	})
+
+	t.Run("Defaults name to 'Go' in Dutch", func(t *testing.T) {
+		got := Hello("Dutch", "")
+		want := "Hallo Go"
 
 		assert(t, got, want)
 	})
