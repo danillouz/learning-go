@@ -16,13 +16,13 @@ See [here](https://golang.org/doc/install) how to install on other Operating Sys
 
 A workspace is a directory hierarchy with three directories at its root:
 
-* `src`: source repositories
-* `pkg`: package objects
-* `bin`: executable commands
+- `src`: source repositories
+- `pkg`: package objects
+- `bin`: executable commands
 
 You should keep your Go source code and dependencies in a single workspace, which differs
 from other programming environments in which every project has a separate workspace. The default
-workspace, called `go`, is located in your home directory and is denoted by [$GOPATH](https://golang.org/doc/code.html#GOPATH).
+workspace, called `go`, is located in your home directory and is denoted by [\$GOPATH](https://golang.org/doc/code.html#GOPATH).
 
 Create your workspace:
 
@@ -59,13 +59,13 @@ I keep my code on GitHub, therefore `github.com/danillouz` will be the _base pat
 
 ## Hello World
 
-First create a package called `hello-world`:
+First create a package called `hello`:
 
 ```
-> mkdir -p $GOPATH/src/github.com/danillouz/hello-world
+> mkdir -p $GOPATH/src/github.com/danillouz/hello
 ```
 
-Create a file called `hello-world.go` inside the `hello-world` package with the following [contents](../code/hello-world/hello-world.go):
+Create a file called `hello.go` inside the `hello` package with the following [contents](../code/hello/hello.go):
 
 ```go
 package main
@@ -77,7 +77,7 @@ func main() {
 }
 ```
 
-Install the package; from inside the `hello-world` directory you can run:
+Install the package; from inside the `hello` directory you can run:
 
 ```
 > go install
@@ -86,12 +86,12 @@ Install the package; from inside the `hello-world` directory you can run:
 Or from `$GOPATH/go/src` you can run:
 
 ```
-> go install github.com/danillouz/hello-world
+> go install github.com/danillouz/hello
 ```
 
-Now you can type the binary name `hello-world`:
+Now you can type the binary name `hello`:
 
 ```
-> hello-world
+> hello
 Hello World!
 ```
