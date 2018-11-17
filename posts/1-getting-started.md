@@ -95,3 +95,21 @@ Now you can type the binary name `hello`:
 > hello
 Hello World!
 ```
+
+## Running Tests
+
+Test can be run in the `code/hello` dir by running:
+
+```
+> go test
+```
+
+This will run the tests as specified in `hell_test.go`.
+
+In Go everything needed to run tests is built in to the language and works as
+long as:
+
+- the file to be tested ends with `_test.go`. For example `hello_test.go`.
+- the test function must start with `Test`. For example `TestHello`.
+
+Test functions are called with `t *testing.T` which is a type to help interact with the testing package.
