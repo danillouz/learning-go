@@ -3,11 +3,15 @@ package main
 import "fmt"
 
 // Hello creates a hello message
-func Hello() string {
-	return "Hello World!"
+func Hello(name string) string {
+	if name == "" {
+		name = "World"
+	}
+
+	return "Hello " + name
 }
 
 func main() {
-	msg := Hello()
+	msg := Hello("World")
 	fmt.Println(msg)
 }
