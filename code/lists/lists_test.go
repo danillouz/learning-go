@@ -58,3 +58,46 @@ func BenchmarkSumListsInPlace(b *testing.B) {
 		SumListsInPlace(x, y)
 	}
 }
+
+func TestSumTails(t *testing.T) {
+	assert := func(t *testing.T, got, want []int, input ...[]int) {
+		t.Helper()
+
+		if !reflect.DeepEqual(got, want) {
+			t.Errorf("Got '%v', want '%v', input '%v'", got, want, input)
+		}
+	}
+
+	t.Run("Sums the tails of lists", func(t *testing.T) {
+		a := []int{1, 2, 2}
+		b := []int{5, 5, 5}
+		got := SumTails(a, b)
+		want := []int{4, 10}
+		assert(t, got, want, a, b)
+	})
+
+	t.Run("Can sum empty lists", func(t *testing.T) {
+		a := []int{}
+		b := []int{3, 3, 3}
+		got := SumTails(a, b)
+		want := []int{0, 6}
+		assert(t, got, want, a, b)
+	})
+}
+
+func ExampleSumTails() {
+	a := []int{3, 4, 5}
+	b := []int{1, 2}
+	summedTails := SumTails(a, b)
+	fmt.Println(summedTails)
+	// Output: [9 2]
+}
+
+func BenchmarkSumTails(b *testing.B) {
+	x := []int{5, 6, 7}
+	y := []int{7, 7}
+
+	for i := 0; i < b.N; i++ {
+		SumTails(x, y)
+	}
+}

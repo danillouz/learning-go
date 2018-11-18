@@ -11,12 +11,32 @@ func SumList(list []int) int {
 	return sum
 }
 
-// SumListsInPlace returns a list that sums all elements in the provided lists.
+// SumListsInPlace returns a list that contains the sum of all elements in the provided lists.
 func SumListsInPlace(lists ...[]int) []int {
 	output := []int{}
 
 	for _, list := range lists {
 		sum := SumList(list)
+		output = append(output, sum)
+	}
+
+	return output
+}
+
+// SumTails return a lists that contains the sums of "tails" of all provided lists.
+func SumTails(lists ...[]int) []int {
+	output := []int{}
+
+	for _, list := range lists {
+		var sum int
+
+		if len(list) == 0 {
+			sum = 0
+		} else {
+			tail := list[1:]
+			sum = SumList(tail)
+		}
+
 		output = append(output, sum)
 	}
 
