@@ -6,7 +6,8 @@ import (
 )
 
 func TestPerimeter(t *testing.T) {
-	got := Perimeter(15.0, 15.0)
+	rect := Rectangle{15.0, 15.0}
+	got := Perimeter(rect)
 	want := 60.0
 
 	if got != want {
@@ -15,19 +16,23 @@ func TestPerimeter(t *testing.T) {
 }
 
 func BenchmarkPerimeter(b *testing.B) {
+	rect := Rectangle{5.0, 7.0}
+
 	for i := 0; i < b.N; i++ {
-		Perimeter(5.0, 7.0)
+		Perimeter(rect)
 	}
 }
 
 func ExamplePerimeter() {
-	perimeter := Perimeter(7.0, 4.0)
+	rect := Rectangle{7.0, 4.0}
+	perimeter := Perimeter(rect)
 	fmt.Println(perimeter)
 	// Output: 22
 }
 
 func TestArea(t *testing.T) {
-	got := Area(5.0, 5.0)
+	rect := Rectangle{5.0, 5.0}
+	got := Area(rect)
 	want := 25.0
 
 	if got != want {
@@ -36,13 +41,16 @@ func TestArea(t *testing.T) {
 }
 
 func BenchmarkArea(b *testing.B) {
+	rect := Rectangle{11.0, 56.0}
+
 	for i := 0; i < b.N; i++ {
-		Area(11.0, 56.0)
+		Area(rect)
 	}
 }
 
 func ExampleArea() {
-	area := Area(4.0, 4.0)
+	rect := Rectangle{4.0, 4.0}
+	area := Area(rect)
 	fmt.Println(area)
 	// Output: 16
 }
