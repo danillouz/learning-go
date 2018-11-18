@@ -169,3 +169,11 @@ Then run the benchmark with:
 ```
 
 More information can be found [here](https://golang.org/pkg/testing/#hdr-Benchmarks).
+
+## Test Coverage
+
+To enable test coverage analytics run:
+
+```
+> go test -cover
+```
