@@ -146,3 +146,26 @@ When the "Output:" comment is removed, the code is only compiled, but not execut
 > Examples without output comments are useful for demonstrating code that cannot run as unit tests, such as that which accesses the network, while guaranteeing the example at least compiles.
 
 More information can be found [here](https://blog.golang.org/examples).
+
+## Benchmarks
+
+Benchmarks are functions that start with the name `Benchmark` and will be executed
+when `go test` is run with the `-bench` flag. For example:
+
+```go
+func BenchmarkSomeFunc(*b testing.B) {
+  for i := 0; i < b.N; i++ {
+    // Code to be benchmarked, e.g. SomeFunc()
+  }
+}
+```
+
+> The benchmark function must run the target code b.N times. During benchmark execution, b.N is adjusted until the benchmark function lasts long enough to be timed reliably.
+
+Then run the benchmark with:
+
+```
+> go test -bench .
+```
+
+More information can be found [here](https://golang.org/pkg/testing/#hdr-Benchmarks).
