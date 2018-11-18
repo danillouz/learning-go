@@ -8,7 +8,7 @@ import (
 func TestSum(t *testing.T) {
 	assert := func(t *testing.T, got, want int) {
 		if got != want {
-			t.Errorf("Got '%d', expected '%d'", got, want)
+			t.Errorf("Got '%d', want '%d'", got, want)
 		}
 	}
 
