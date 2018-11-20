@@ -177,3 +177,13 @@ To enable test coverage analytics run:
 ```
 > go test -cover
 ```
+
+## Race Detector
+
+Go can detect race conditions with:
+
+```
+> go test -race
+```
+
+More information can be found [here](https://blog.golang.org/race-detector).
