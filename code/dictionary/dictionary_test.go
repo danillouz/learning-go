@@ -35,6 +35,36 @@ func TestSearch(t *testing.T) {
 	t.Run("no match", func(t *testing.T) {
 		_, err := dict.Search("nokey")
 
-		assertError(t, err, ErrorNotFound)
+		assertError(t, err, ErrNotFound)
 	})
+}
+
+func TestUpdate(t *testing.T) {
+	dict := Dictionary{}
+	key := "one"
+	want := 1
+	dict.Update(key, want)
+
+	got, err := dict.Search(key)
+
+	if err != nil {
+		t.Fatalf("got err %v, want value %v", err, want)
+	}
+
+	if got != want {
+		t.Errorf("got %v, want %v", got, want)
+	}
+}
+
+func TestDelete(t *testing.T) {
+	key := "one"
+	dict := Dictionary{}
+
+	dict[key] = 1
+	dict.Delete(key)
+	_, err := dict.Search(key)
+
+	if err != ErrNotFound {
+		t.Fatalf("got %v, want error %v", err, ErrNotFound)
+	}
 }
