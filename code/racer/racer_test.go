@@ -19,19 +19,43 @@ func newDelayedServer(delay time.Duration) *httptest.Server {
 }
 
 func TestRacer(t *testing.T) {
-	slowServer := newDelayedServer(10 * time.Millisecond)
-	defer slowServer.Close()
+	t.Run("pings URLs and returns the fastest to resolve", func(t *testing.T) {
+		slowServer := newDelayedServer(10 * time.Millisecond)
+		defer slowServer.Close()
 
-	fastServer := newDelayedServer(0)
-	defer fastServer.Close()
+		fastServer := newDelayedServer(0)
+		defer fastServer.Close()
 
-	slowURL := slowServer.URL
-	fastURL := fastServer.URL
+		slowURL := slowServer.URL
+		fastURL := fastServer.URL
 
-	got := Racer(fastURL, slowURL)
-	want := fastURL
+		got, err := Racer(fastURL, slowURL, 20*time.Millisecond)
+		want := fastURL
 
-	if got != want {
-		t.Errorf("got %v, want %v", got, want)
-	}
+		if err != nil {
+			t.Fatalf("got error %v, want URL", err)
+		}
+
+		if got != want {
+			t.Errorf("got %v, want %v", got, want)
+		}
+	})
+
+	t.Run("return error when ping takes longer than timeout", func(t *testing.T) {
+		slowServer := newDelayedServer(10 * time.Millisecond)
+		defer slowServer.Close()
+
+		fastServer := newDelayedServer(10 * time.Millisecond)
+		defer slowServer.Close()
+
+		slowURL := slowServer.URL
+		fastURL := fastServer.URL
+
+		timeout := 5 * time.Millisecond
+		_, err := Racer(slowURL, fastURL, timeout)
+
+		if err != ErrTimeout {
+			t.Errorf("got %v, want error %v", err, ErrTimeout)
+		}
+	})
 }
