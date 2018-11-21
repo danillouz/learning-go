@@ -2,25 +2,25 @@ package racer
 
 import (
 	"net/http"
-	"time"
 )
 
-func getRequestDuration(url string) time.Duration {
-	start := time.Now()
-	http.Get(url)
-	duration := time.Since(start)
+func ping(url string) chan bool {
+	ch := make(chan bool)
 
-	return duration
+	go func() {
+		http.Get(url)
+		ch <- true
+	}()
+
+	return ch
 }
 
-// Racer accepts 2 URLs and returns the fastest one to resolve.
+// Racer accepts 2 URLs and returns the fastest one to ping.
 func Racer(a, b string) string {
-	durationA := getRequestDuration(a)
-	durationB := getRequestDuration(b)
-
-	if durationA < durationB {
+	select {
+	case <-ping(a):
 		return a
+	case <-ping(b):
+		return b
 	}
-
-	return b
 }
