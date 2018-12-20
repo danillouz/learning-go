@@ -187,3 +187,23 @@ Go can detect race conditions with:
 ```
 
 More information can be found [here](https://blog.golang.org/race-detector).
+
+## Go Modules
+
+Go modules allow you to organize Go code outside of `GOPATH`.
+
+Initialize:
+
+```
+go mod init github.com/danillouz/spidey
+```
+
+Add deps to `go.mod`:
+
+```
+go get -u ./...
+```
+
+_Commit `go.mod` and `go.sum`._
+
+For more information see [modules wiki](https://github.com/golang/go/wiki/Modules).
