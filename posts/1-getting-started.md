@@ -104,7 +104,7 @@ Test can be run in the `code/hello` dir by running:
 > go test
 ```
 
-This will run the tests as specified in `hell_test.go`.
+This will run the tests as specified in `hello_test.go`.
 
 In Go everything needed to run tests is built in to the language and works as
 long as:
